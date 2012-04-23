@@ -1,0 +1,44 @@
+body
+{
+	font-family:arial;
+}
+
+p, h1, h2, h3
+{
+	padding:0px;
+	margin-left:5%;
+	margin-right:5%;
+}
+
+#png_holder
+{
+	-moz-border-radius:10px;
+	border:1px solid #000;
+	margin:5%;
+	margin-top:0px;
+}
+
+#png_holder img
+{
+	padding:2px;
+}
+
+#png_count
+{
+	-moz-border-radius:10px;
+	border:1px solid #000;
+	margin-left:5%;
+	margin-right:5%;
+	margin-bottom:5px;
+}
+
+#png_count p
+{
+	padding:4px;
+	margin:0px;
+}
+
+.text
+{
+	float:left;
+}

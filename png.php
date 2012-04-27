@@ -1,6 +1,6 @@
 <?php
 //Lerie Taylor
-//8:34 PM 4/22/2012
+//8:34 PM 4/22/2012, 9:17 AM 4/27/2012
 
 set_time_limit(0);
 
@@ -37,6 +37,7 @@ for($i=0;$i<sizeof($out[0]);$i++)
 
 		closedir($handle);
 	}
+
 }
 
 function curlIt($url, $num)
@@ -60,7 +61,8 @@ function archiveFiles($f)
 {
 	for($i=0;$i<sizeof($f);$i++)
 	{
-		if(!is_dir("png/archive/".$f[0]."/")) mkdir("png/archive/".$f[0]."/");
+		$sName = explode(".", $f[0]);
+		if(!is_dir("png/archive/".$sName[0].$sName[1]."/")) mkdir("png/archive/".$sName[0].$sName[1]."/");
 
 		copy("png/".$f[$i], "png/archive/".$f[0]."/".$f[$i].".png");
 		unlink("png/".$f[$i]);

@@ -13,7 +13,7 @@
 	{
 		$('#png_holder').load('png.php');
 		$('#png_count').load('png_count.php');
-	}, 2000);
+	}, 6000);
 	</script>
 </head>
 <body>

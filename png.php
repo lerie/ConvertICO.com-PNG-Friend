@@ -10,20 +10,21 @@ dirCheck();
 $src = file_get_contents("http://www.convertico.com/newest.php?ajax&time=");
 preg_match_all("/(\d+[.]\d+)/", $src, $out, PREG_PATTERN_ORDER);
 
+$files = array();
 for($i=0;$i<sizeof($out[0]);$i++)
 {
+	$files = array_unique($files);
 	$link = curlIt("http://www.convertico.com/images/".$out[0][$i]."/_previmg.png", $out[0][$i]);
 	sleep(1);
 
 	if($handle = opendir("png/"))
 	{
-		$files = array();
-
 		while (false !== ($entry = readdir($handle)))
 		{
 			if ($entry != "." && $entry != ".." && $entry != "archive")
 			{
 				array_push($files, $entry);
+
 				if(count($files)>=100)
 				{
 					archiveFiles($files);
@@ -35,9 +36,7 @@ for($i=0;$i<sizeof($out[0]);$i++)
 		}
 
 		closedir($handle);
-		die();
 	}
-
 }
 
 function curlIt($url, $num)
@@ -64,7 +63,7 @@ function archiveFiles($f)
 		$sName = explode(".", $f[0]);
 		if(!is_dir("png/archive/".$sName[0].$sName[1]."/")) mkdir("png/archive/".$sName[0].$sName[1]."/");
 
-		copy("png/".$f[$i], "png/archive/".$f[0]."/".$f[$i].".png");
+		copy("png/".$f[$i], "png/archive/".$sName[0].$sName[1]."/".$f[$i].".png");
 		unlink("png/".$f[$i]);
 	}
 	$files = "";
